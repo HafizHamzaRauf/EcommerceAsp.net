@@ -2,24 +2,26 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
+@model List<Product>
 
 <div class="col-lg-9">
             <div class="row" style="margin-bottom: 20px;">
                       <p class="h1 text-center m-4 col-lg-13">All Products</p>
-                @for(int i  = 0; i < 9;i++)
+                @foreach(var pd in Model)
         {
 
                     <div class="col-lg-4">
                         <div class="card shadow-sm">
-                            <img src="~/productImages/Image8.jpg" class="bd-placeholder-img card-img-top" width="100%" height="225" />
+                                <img src="@pd.ImageUrl" class="bd-placeholder-img card-img-top" width="100%" height="225" />
+
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h6>T-Shirt<span class="badge bg-secondary">Category</span></h6>
-                                    <p class="text-success"><strong>$14.9</strong></p>
+                                    <h6>@pd.Title<span class="badge bg-secondary">@pd.Category</span></h6>
+                                    <p class="text-success"><strong>@pd.Price</strong></p>
                                 </div>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text">@pd.Description</p>
                                 <div class="d-flex justify-content-between">
-                                    <button type="button" class="btn btn-primary"   onclick="redirectToAnotherPage('https://localhost:7230/Products/SingleProduct/ + productId')">View</button>
+                                    <button type="button" class="btn btn-primary"   onclick="redirectToAnotherPage('https://localhost:7230/Products/SingleProduct/ + @pd.ProductId')">View</button>
                                     <button type="button" class="btn btn-dark">Add To Cart</button>
                                 </div>
                             </div>

@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model List<Product>
 
 <partial name="_carousel.cshtml" />
 
@@ -10,7 +11,7 @@
 
        <partial name="_filter.cshtml"/>
 
-        <partial name = "_products.cshtml"/>
+        <partial name = "_products.cshtml" data="@Model"/>
 
 
 
