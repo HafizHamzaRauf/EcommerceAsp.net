@@ -1,0 +1,28 @@
+﻿<div class="container">
+  <div class="row my-4">
+       
+       <div class="col-lg-6">
+          <img src="~/productImages/image8.jpg" style="height:500px;" class="img-fluid" alt="Responsive image"/>
+
+    </div>
+    <div class="col-lg-6">
+        <div class="card" style="height:500px;" >
+  <div class="card-body py-4" >
+    <h5 class="card-title">Title: Product title</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Category: Product1</h6>
+
+    <p class="card-text">Description: Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+   <h3>Price: $14.4</h3>
+    <button type="button" class="btn btn-secondary" onclick="redirectToAnotherPage('https://localhost:7230/Products/Index')">Back</button>
+   <button type="button" class="btn btn-info">Add to Cart</button>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+
+<script>
+    function redirectToAnotherPage(path) {
+        window.location.href =path ;
+    }
+</script>
