@@ -21,7 +21,7 @@
                                 </div>
                                 <p class="card-text">@pd.Description</p>
                                 <div class="d-flex justify-content-between">
-                                    <button type="button" class="btn btn-primary"   onclick="redirectToAnotherPage('https://localhost:7230/Products/SingleProduct/ + @pd.ProductId')">View</button>
+                                    <button type="button" class="btn btn-primary"   onclick="redirectToAnotherPage('https://localhost:7230/Products/SingleProduct/{@pd.ProductId}')">View</button>
                                     <button type="button" class="btn btn-dark">Add To Cart</button>
                                 </div>
                             </div>

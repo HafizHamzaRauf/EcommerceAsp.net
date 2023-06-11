@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Mvc;
+using System.Runtime.CompilerServices;
 using WebApplication3.Models;
 namespace WebApplication3.Controllers
 {
@@ -12,10 +14,20 @@ namespace WebApplication3.Controllers
             return View(data);
         }
 
-        public IActionResult SingleProduct(int id)
+        public IActionResult SingleProduct()
         {
-            Console.WriteLine(id);  
-            return View();
+            string url = Request.GetDisplayUrl();
+            int startIndex = url.IndexOf("{") + 1;
+            int endIndex = url.IndexOf("}");
+            string idString = url.Substring(startIndex, endIndex - startIndex);
+            int id = int.Parse(idString);
+            var product = ctx.Products.Find(id);
+
+
+            
+
+            return View(product);
         }
     }
 }
+
