@@ -8,5 +8,9 @@ namespace WebApplication3.Controllers
         {
             return View();
         }
+        public IActionResult AddProduct()
+        {
+            return View();
+        }
     }
 }

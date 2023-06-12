@@ -1,0 +1,27 @@
+﻿<div class="container" style="margin: 50px;">
+  <h2 class="mb-4 text-center">Add Product</h2>
+  <form class="m-4" style="margin: 30px;" method="post" action="/Products/Create">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Product Title</label>
+      <input name="Title" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Title">
+    </div>
+      <div class="form-group">
+      <label for="exampleInputPassword1">Category</label>
+      <input name="Category" type="text" class="form-control" id="exampleInputPassword4" placeholder="Category">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Description</label>
+      <input name="Description" type="text" class="form-control" id="exampleInputPassword1" placeholder="Description">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Price</label>
+      <input name="Price" type="number" class="form-control" id="exampleInputPassword2" placeholder="Price">
+    </div>
+    <div class="mb-3">
+      <label for="imageInput" class="form-label">Image</label>
+      <input name="image" type="file" class="form-control" id="imageInput" accept="image/*">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
