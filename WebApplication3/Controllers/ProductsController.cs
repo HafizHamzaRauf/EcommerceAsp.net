@@ -1,18 +1,25 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using WebApplication3.Models;
+using WebApplication3.Hubs; // Assuming the SignalR hub class is in the "Hubs" folder
 
 namespace WebApplication3.Controllers
 {
     public class ProductsController : Controller
     {
         private readonly EcommerceContext _context = new EcommerceContext();
+        private readonly IHubContext<ProductHub> _productHubContext;
 
-      
+        public ProductsController( IHubContext<ProductHub> productHubContext)
+        {
+            _productHubContext = productHubContext;
+        }
 
         public IActionResult Index()
         {
@@ -33,7 +40,7 @@ namespace WebApplication3.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(string title, string category, string description, decimal price, IFormFile image)
+        public async Task Create(string title, string category, string description, decimal price, IFormFile image)
         {
             string imageUrl = null;
             string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "productImages");
@@ -53,8 +60,7 @@ namespace WebApplication3.Controllers
                 // Handle the exception or log the error message
                 Console.WriteLine($"Error copying image file: {ex.Message}");
                 // You can choose to return an error view or redirect to an error page
-                return RedirectToAction("AddProduct", "Profile"); // Redirect to the home page or any other desired action
-
+                RedirectToAction("AddProduct", "Profile"); // Redirect to the home page or any other desired action
             }
 
             var product = new Product
@@ -69,10 +75,8 @@ namespace WebApplication3.Controllers
             _context.Products.Add(product);
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Home"); // Redirect to the home page or any other desired action
+            // Notify clients to update their products
+            await _productHubContext.Clients.All.SendAsync("SendProductUpdate");
         }
-
-
-
     }
 }

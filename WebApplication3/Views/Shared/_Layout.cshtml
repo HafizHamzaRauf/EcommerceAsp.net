@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -120,6 +121,24 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
- 
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.12/signalr.min.js"></script>
+<script>
+    
+    var connection = new signalR.HubConnectionBuilder().withUrl("/productHub").build();
+
+    connection.on("SendProductUpdate", function () {
+        // Perform the necessary action to update the products, e.g., reload the product list
+         window.location.href= 'https://localhost:7230/Products/Index'
+         
+    });
+
+    connection.start().then(function () {
+        console.log("Connection established!");
+    }).catch(function (err) {
+        console.error(err.toString());
+    });
+</script>
+
 </body>
 </html>

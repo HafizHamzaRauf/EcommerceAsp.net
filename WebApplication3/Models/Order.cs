@@ -11,8 +11,13 @@ public partial class Order
 
     public int ProductId { get; set; }
 
+    public string Payment { get; set; } = null!;
+
+    public string Status { get; set; } = null!;
+
+    public int Quantity { get; set; }
+
     public virtual Product Product { get; set; } = null!;
 
     public virtual User User { get; set; } = null!;
-
 }
