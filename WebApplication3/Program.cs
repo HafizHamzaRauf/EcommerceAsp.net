@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Mvc;
 using WebApplication3.Hubs;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

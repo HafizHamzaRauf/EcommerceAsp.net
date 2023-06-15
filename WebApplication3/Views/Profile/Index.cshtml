@@ -1,4 +1,5 @@
-﻿
+﻿@model List<OrderViewModel>
+
 
 <div class="container-fluid">
       <div class="row">
@@ -50,6 +51,41 @@
 
           <h2>All Orders</h2>
             <vc:orders></vc:orders>
+
+
+
+
+ <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Status</th>
+                  <th>Buyer</th>
+                  <th>Payment</th>
+                  <th>Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+
+
+
+                        @foreach (var o in Model)
+                        {
+                        <tr>
+                          <td>@o.OrderId</td>
+                          <td>@o.Status</td>
+                          <td>@o.Username</td>
+                          <td>@o.Payment</td>
+                          <td>@o.Quantity</td>
+                        </tr>
+                        }
+
+
+              </tbody>
+            </table>
+          </div>
+
         </main>
       </div>
     </div>

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace WebApplication3.ViewComponents
 {
-    public class OrdersViewComponent : ViewComponent
+    public class Orders: ViewComponent
     {
         private readonly EcommerceContext _context = new EcommerceContext();
 
