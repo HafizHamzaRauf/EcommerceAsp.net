@@ -1,4 +1,4 @@
-﻿@model List<Order>
+﻿@model List<OrderViewModel>
 
  <div class="table-responsive">
             <table class="table table-striped table-sm">
@@ -20,7 +20,7 @@
                     <tr>
                       <td>@o.OrderId</td>
                       <td>@o.Status</td>
-                      <td>@o.User</td>
+                      <td>@o.Username</td>
                       <td>@o.Payment</td>
                       <td>@o.Quantity</td>
                     </tr>
