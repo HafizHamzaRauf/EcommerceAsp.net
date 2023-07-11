@@ -35,8 +35,8 @@
                     </li>
                 </ul>
                 <form class="d-flex">
-                    <input class="form-control me-2 mr-3" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <input class="form-control me-2 mr-3" id="inputSearch" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" id="search" type="submit">Search</button>
                 </form>
                 <button type="button" class="btn btn-primary position-relative">
                     Cart
@@ -48,23 +48,10 @@
             </div>
         </div>
     </nav>
+   
 
     
     @RenderBody()
-     
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- Footer -->
 <footer class="bg-dark text-center text-white">
   <!-- Grid container -->
@@ -138,6 +125,19 @@
     }).catch(function (err) {
         console.error(err.toString());
     });
+
+    document.getElementById("search").addEventListener('click', (e)=>{
+        e.preventDefault()
+        var inp = document.getElementById("inputSearch").value
+        if(inp.trim()==='')
+        {return }
+            var url = '/Home/Search?search=' + encodeURIComponent(inp);
+            // Navigate to the new URL
+            window.location.href = url;
+        
+    })
+
+
 </script>
 
 </body>

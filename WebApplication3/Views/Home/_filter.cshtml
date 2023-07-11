@@ -12,35 +12,35 @@
             <hr />
 
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1">
+                <input class="form-check-input" type="checkbox" value="men" id="flexCheckChecked1">
                 <label class="form-check-label" for="flexCheckChecked1">
                     Men
                 </label>
             </div>
 
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2">
+                <input class="form-check-input" type="checkbox" value="women" id="flexCheckChecked2">
                 <label class="form-check-label" for="flexCheckChecked2">
                     Women
                 </label>
             </div>
 
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked3">
+                <input class="form-check-input" type="checkbox" value="shoes" id="flexCheckChecked3">
                 <label class="form-check-label" for="flexCheckChecked3">
                     Shoes
                 </label>
             </div>
 
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked4">
+                <input class="form-check-input" type="checkbox" value="bags" id="flexCheckChecked4">
                 <label class="form-check-label" for="flexCheckChecked4">
                     Bags
                 </label>
             </div>
 
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked5">
+                <input class="form-check-input" type="checkbox" value="clothes" id="flexCheckChecked5">
                 <label class="form-check-label" for="flexCheckChecked5">
                     Clothes
                 </label>
@@ -50,35 +50,74 @@
             <hr />
 
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="50">
                 <label class="form-check-label" for="flexRadioDefault1">
                     $0-50
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="100">
                 <label class="form-check-label" for="flexRadioDefault2">
-                    $51-100
+                    <= $100
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"value="500">
                 <label class="form-check-label" for="flexRadioDefault2">
-                    $101-500
+                    <= $500
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="2000">
                 <label class="form-check-label" for="flexRadioDefault2">
-                    $501-2000
+                    <= $2000
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="2001">
                 <label class="form-check-label" for="flexRadioDefault2">
                     $2000-more
                 </label>
             </div>
 
-            <button type="button" class="btn btn-dark w-100 my-4">Reset Filters</button>
+            <button type="button" id="reset" class="btn btn-dark w-100 my-4">Reset Filters</button>
         </div>
+
+
+<script>
+    // Function to handle checkbox change event
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(function (checkbox) {
+        checkbox.addEventListener('change', function () {
+            // Get the selected categories
+            var selectedCategories = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(function (checkbox) {
+                return checkbox.value;
+            });
+            // Build the URL with the selected filters as route parameters
+            var url = '/Home/Filter?categories=' + selectedCategories.join(',');
+            // Navigate to the new URL
+           window.location.href = url;
+        });
+    });
+    var btn = document.getElementById("reset").addEventListener('click', (e)=>{
+        var url = '/Home/Index'
+        // Navigate to the new URL
+        window.location.href = url;
+    })
+
+
+
+    // Function to handle radio button change event
+    var radioButtons = document.querySelectorAll('input[type="radio"]');
+    radioButtons.forEach(function (radioButton) {
+        radioButton.addEventListener('change', function () {
+            // Get the selected price range
+            var selectedPrice = document.querySelector('input[name="flexRadioDefault"]:checked').value;
+            // Build the URL with the selected filters as route parameters
+            var url = '/Home/PriceFilter?price=' + encodeURIComponent(selectedPrice);
+            // Navigate to the new URL
+            window.location.href = url;
+        });
+    });
+
+</script>
